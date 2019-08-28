@@ -1,0 +1,11 @@
+{
+  "name": "rpgame",
+  "version": "1.0.0",
+  "description": "Textual roleplay game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lvannebenne",
+  "license": "MIT"
+}
