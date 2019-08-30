@@ -20,8 +20,10 @@ async function myAsync() {
 myAsync();
 */
 
+
 const sentences = require('./sentences').sentences;
 
+const strBr = require('string-break');
 const boxen = require("boxen");
 const chalk = require("chalk");
 const grad = require('gradient-string');
@@ -37,8 +39,12 @@ const cad = {
 }
 
 let prompt = process.stdin;
+prompt.setEncoding('utf-8');
 
 async function play() {
+    console.clear();
+
+    //Titre en Ascii Art
 
     figlet("    Bienvenue",{
         font: 'Big'
@@ -50,11 +56,11 @@ async function play() {
         console.log(grad.rainbow(data));
     })
 
-    prompt.setEncoding('utf-8');
+    
 
     function displaytext() {
         setTimeout(() => {
-            console.log(boxen(chalk.bold(grad.atlas("Amis de la ligne de commande... \n              dans cette aventure interactive.\n")) + chalk.dim("\nVous allez vivre une expérience qui va vous rappeller votre \nenfance. Pour participer, lisez le premier paragraphe, vous \ndevrez faire un choix. Entrez le numéro correspondant à \nvotre choix et appuyez sur [ENTER]. Pour commencer, entrez \nle chiffre 1."), { padding: 1, borderStyle: 'double' }));
+            console.log(boxen(chalk.bold(grad.atlas("Amis de la ligne de commande... \n              dans cette aventure interactive.\n")) + chalk.dim("\nTu vas vivre une expérience qui va te rappeller ton \nenfance. Pour participer, lis le premier paragraphe, tu \ndevra faire un choix. Entre le numéro correspondant à \nton choix et appuye sur [ENTER]. Pour commencer, entre \nle chiffre 1."), { padding: 1, borderStyle: 'double' }));
             console.log(chalk.bold(grad.morning("   Quel est ton choix ?")))
         }, 500)
     }
@@ -68,7 +74,7 @@ async function play() {
         else {
             data = data.trim()
             if (new RegExp(/^[0-9]{1,2}$/g).test(data)) {
-                console.log(boxen(sentences[data], {borderStyle: cad}));
+                console.log(boxen(strBr(sentences[data], process.stdout.columns - 10).join(" \n"), {padding: 1, borderStyle: 'double'}));
             }
             else {
                 console.error("Oups, mauvais choix, recommence... ");
