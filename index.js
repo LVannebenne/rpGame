@@ -41,6 +41,7 @@ const cad = {
 let prompt = process.stdin;
 prompt.setEncoding('utf-8');
 
+
 async function play() {
     console.clear();
 
@@ -74,7 +75,7 @@ async function play() {
         else {
             data = data.trim()
             if (new RegExp(/^[0-9]{1,2}$/g).test(data)) {
-                console.log(boxen(strBr(sentences[data], process.stdout.columns - 10).join(" \n"), {padding: 1, borderStyle: 'double'}));
+                console.log(boxen(strBr(sentences[data].text, process.stdout.columns - 10).join(" \n"), {padding: 1, borderStyle: 'double'}));
             }
             else {
                 console.error("Oups, mauvais choix, recommence... ");
